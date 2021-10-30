@@ -13,6 +13,18 @@ class UrlsController extends AbstractController
      */
     public function create(): Response
     {
-        return $this->render('urls/create.html.twig');
+        $form = $this->createFormBuilder()
+            ->add('original', null, [
+                'label' => false,
+                'attr' => [
+                    'placeholder' => 'Entre the URL to shorten here'
+                ]
+            ])
+            ->getForm()
+            ;
+
+        return $this->render('urls/create.html.twig',[
+            'form' => $form->createView(),
+        ]);
     }
 }
